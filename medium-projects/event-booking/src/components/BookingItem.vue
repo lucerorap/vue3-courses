@@ -1,7 +1,7 @@
 <template>
   <SectionCard>
     <div class="flex justify-between">
-      <div>Booking to Vue Conference</div>
+      <div><slot></slot></div>
       <RoundedButton variant="danger">Cancel</RoundedButton>
     </div>
   </SectionCard>
