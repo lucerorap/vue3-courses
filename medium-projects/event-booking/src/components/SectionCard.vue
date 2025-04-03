@@ -1,8 +1,12 @@
 <template>
   <RoundedCard>
-    <h3 class="p-4 font-medium text-xl border-b border-gray-200"><slot name="header"></slot></h3>
-    <p class="p-4 border-b border-gray-200"><slot></slot></p>
-    <div class="p-4">
+    <h3 v-if="$slots.header" class="p-4 font-medium text-xl border-b border-gray-200">
+      <slot name="header"></slot>
+    </h3>
+    <p :class="{ 'p-4': true, 'border-b border-gray-200': $slots.footer }">
+      <slot></slot>
+    </p>
+    <div v-if="$slots.footer" class="p-4">
       <slot name="footer"></slot>
     </div>
   </RoundedCard>
