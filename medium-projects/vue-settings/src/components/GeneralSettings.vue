@@ -1,1 +1,1 @@
-<template>General</template>
+<template><div>General</div></template>

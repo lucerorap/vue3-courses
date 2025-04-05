@@ -7,7 +7,9 @@
         </li>
       </ul>
     </nav>
-    <component :is="currentTabComponent" />
+    <FadeTransition>
+      <component :is="currentTabComponent" />
+    </FadeTransition>
   </main>
 </template>
 
@@ -18,6 +20,7 @@ import TabLink from '@/components/TabLink.vue';
 import GeneralSettings from '@/components/GeneralSettings.vue';
 import NotificationSettings from '@/components/NotificationSettings.vue';
 import PrivacySettings from '@/components/PrivacySettings.vue';
+import FadeTransition from '@/components/transitions/FadeTransition.vue';
 
 const tabs: Tab[] = [
   {
