@@ -1,11 +1,8 @@
 <template>
   <template v-if="error">
-    <SectionCard>
-      <div class="space-y-4 items-center flex flex-col">
-        <div class="text-red-500">Could not load events at the moment. Please try again.</div>
-        <RoundedButton @click="fetchEvents">Retry Now</RoundedButton>
-      </div>
-    </SectionCard>
+    <ErrorCard :retry="fetchEvents">
+      Could not load events at the moment. Please try again.
+    </ErrorCard>
   </template>
   <template v-else>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -35,9 +32,8 @@
 import { ref, onMounted } from 'vue'
 import EventCard from '@/components/EventCard.vue'
 import LoadingEventCard from '@/components/LoadingEventCard.vue'
-import SectionCard from '@/components/SectionCard.vue'
-import RoundedButton from '@/components/RoundedButton.vue'
 import useBookings from '@/composables/useBookings'
+import ErrorCard from '@/components/ErrorCard.vue'
 
 const { handleRegistration } = useBookings()
 
