@@ -62,7 +62,9 @@ const privacy = ref<PrivacySettings>(
   }),
 );
 
-watch(general, watcher), { deep: true };
+watch(general, watcher('general')), { deep: true };
+watch(notifications, watcher('notifications')), { deep: true };
+watch(privacy, watcher('privacy')), { deep: true };
 
 export function useSettings() {
   return {
