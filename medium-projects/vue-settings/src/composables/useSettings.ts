@@ -1,4 +1,12 @@
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+
+interface SettingsMap {
+  general: GeneralSettings;
+  notifications: NotificationsSettings;
+  privacy: PrivacySettings;
+}
+
+type SettingsKey = keyof SettingsMap;
 
 interface GeneralSettings {
   username: string;
@@ -20,23 +28,41 @@ interface PrivacySettings {
 
 type visibility = 'public' | 'private';
 
-const general = ref<GeneralSettings>({
-  username: '',
-  email: '',
-  about: '',
-  gender: 'male',
-  country: 'USA',
-});
+const init = <T extends SettingsKey>(key: T, defaults: SettingsMap[T]) => {
+  const stored = localStorage.getItem(key);
 
-const notifications = ref<NotificationsSettings>({
-  email: false,
-  sms: false,
-});
+  return stored !== null ? JSON.parse(stored) : defaults;
+};
 
-const privacy = ref<PrivacySettings>({
-  visibility: 'public',
-  searchEngineIndexing: false,
-});
+const watcher =
+  <T extends SettingsKey>(key: T) =>
+  (value: SettingsMap[T]) =>
+    localStorage.setItem(key, JSON.stringify(value));
+const general = ref<GeneralSettings>(
+  init('general', {
+    username: '',
+    email: '',
+    about: '',
+    gender: 'male',
+    country: 'USA',
+  }),
+);
+
+const notifications = ref<NotificationsSettings>(
+  init('notifications', {
+    email: false,
+    sms: false,
+  }),
+);
+
+const privacy = ref<PrivacySettings>(
+  init('privacy', {
+    visibility: 'public',
+    searchEngineIndexing: false,
+  }),
+);
+
+watch(general, watcher), { deep: true };
 
 export function useSettings() {
   return {
