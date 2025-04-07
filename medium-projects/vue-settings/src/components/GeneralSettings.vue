@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-2xl mb-4">General</h2>
-    <form class="space-y-4 mx-auto">
+    <form class="space-y-4 mx-auto" @submit.prevent="save">
       <div>
         <label class="mb-1">Username</label>
         <input type="text" name="username" v-model="general.username" />
@@ -43,7 +43,13 @@
 </template>
 
 <script setup lang="ts">
+import { useNotification } from '@/composables/useNotifications';
 import { useSettings } from '@/composables/useSettings';
 
 const { general } = useSettings();
+const { addNotification } = useNotification();
+
+const save = () => {
+  addNotification('General settings were saved successfully.');
+};
 </script>

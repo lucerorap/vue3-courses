@@ -20,7 +20,7 @@ const addNotification = (message: string) => {
 const removeNotification = (id: number) => {
   notifications.value = notifications.value.filter((notification) => notification.id !== id);
 };
-export function useNostification() {
+export function useNotification() {
   return {
     notifications,
     addNotification,
