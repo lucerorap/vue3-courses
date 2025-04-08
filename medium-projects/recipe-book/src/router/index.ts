@@ -14,6 +14,10 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/home',
+      redirect: '/',
+    },
+    {
       path: '/favorites',
       name: 'favorites',
       component: FavoritesView,
@@ -27,6 +31,7 @@ const router = createRouter({
       path: '/recipe/:id',
       name: 'recipe',
       component: RecipeView,
+      alias: '/meal/:id',
     },
     {
       path: '/:pathMatch(.*)*',
