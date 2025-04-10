@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import Draggable from 'vuedraggable';
+import ParentComponent from './components/ParentComponent.vue';
 
 interface Card {
   id: number;
@@ -65,5 +66,7 @@ const lists = reactive<List[]>([
         </button>
       </div>
     </div>
+
+    <ParentComponent />
   </main>
 </template>
