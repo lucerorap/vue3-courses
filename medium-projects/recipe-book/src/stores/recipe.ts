@@ -22,11 +22,19 @@ export const useRecipeStore = defineStore('recipe', () => {
     return newRecipe;
   };
 
+  const editRecipe = (updatedRecipe: Recipe) => {
+    const index = recipes.value.findIndex((recipe) => recipe.id === updatedRecipe.id);
+
+    if (index !== -1) {
+      recipes.value[index] = updatedRecipe;
+    }
+  };
+
   const getRecipeById = (id: string) => recipes.value.find((recipe) => recipe.id === id);
 
   const filteredRecipes = (searchQuery: string) =>
     recipes.value.filter((recipe) =>
       recipe.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()),
     );
-  return { recipes, addRecipe, getRecipeById, filteredRecipes };
+  return { recipes, addRecipe, editRecipe, getRecipeById, filteredRecipes };
 });
