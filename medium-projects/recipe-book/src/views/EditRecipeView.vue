@@ -1,13 +1,27 @@
 <template>
-  <div>Edit Form</div>
-  <form @submit.prevent="updateRecipe">
+  <h1 class="text-2xl font-bold mb-4">Edit Form</h1>
+  <form @submit.prevent="updateRecipe" class="space-y-4">
     <div>
-      <input type="text" v-model="name" placeholder="Recipe name" required />
+      <input
+        type="text"
+        v-model="name"
+        placeholder="Recipe name"
+        class="p-2 border rounded w-full"
+        required
+      />
     </div>
     <div>
-      <input type="text" v-model="description" placeholder="Recipe description" required />
+      <input
+        type="text"
+        v-model="description"
+        placeholder="Recipe description"
+        class="p-2 border rounded w-full"
+        required
+      />
     </div>
-    <button type="submit">Edit</button>
+    <button type="submit" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">
+      Edit
+    </button>
   </form>
 </template>
 
